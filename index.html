@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link
+      rel="stylesheet"
+      href="https://pagecdn.io/lib/tailwindcss/1.6.2/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Sorting Visualizer</title>
+  </head>
+  <body class="bg-gray-800">
+    <div class="flex justify-center content-center w-2/3 m-auto mt-12">
+      <div class="inline-block align-middle w-1/3">
+        <div class="w-64 block align-middle m-5">
+          <label
+            id="animTimeLabel"
+            for="barWidth"
+            class="text-gray-100 block text-xl"
+          >
+            Animation Speed:
+          </label>
+          <input
+            name="numBars"
+            type="range"
+            min="0"
+            max="2000"
+            class="block w-full mt-2"
+            id="animTimeInput"
+          />
+        </div>
+        <div class="w-64 block align-middle m-5">
+          <label
+            id="numBarsLabel"
+            for="barWidth"
+            class="text-gray-100 block text-xl"
+          >
+            Number of bars:
+          </label>
+          <input
+            name="numBars"
+            type="range"
+            min="3"
+            max="10"
+            class="block w-full mt-2"
+            id="numBarsInput"
+          />
+        </div>
+        <div class="w-64 block align-middle m-5">
+          <label
+            id="barWidthLabel"
+            for="barWidth"
+            class="text-gray-100 block text-xl"
+          >
+            Bars Width:
+          </label>
+          <input
+            name="barWidth"
+            type="range"
+            min="5"
+            max="10"
+            class="block w-full mt-2"
+            id="barWidthInput"
+          />
+        </div>
+      </div>
+      <div class="inline-block mx-5 align-middle w-1/3">
+        <div class="block my-5">
+          <select
+            id="algo-select"
+            class="rounded p-5 bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold align-middle w-8/12 hover:border-blue-700 focus:outline-none h-16"
+          >
+            <option>--</option>
+            <option value="selection">Selection sort</option>
+            <option value="bubble">Bubble sort</option>
+            <option value="insert">Insert sort</option>
+            <option value="quick">Quicksort</option>
+            <option value="merge">Merge sort</option>
+          </select>
+          <button
+            id="sort"
+            class="rounded text-center py-5 bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold align-middle w-1/4 focus:outline-none h-16"
+          >
+            Sort
+          </button>
+        </div>
+        <button
+          class="rounded p-5 bg-blue-600 my-5 hover:bg-blue-700 text-gray-100 font-bold block w-11/12 focus:outline-none"
+          id="random-data"
+        >
+          Random data
+        </button>
+        <div class="w-full block align-middle my-5 block text-left">
+          <input type="checkbox" class="inline-block mr-5 w-6 h-6" />
+          <label
+            for="wantsAnim"
+            class="text-gray-100 inline-block text-xl w-5/6 align-middle"
+          >
+            Display color animations (will reduce performance)
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="w-screen flex justify-center items-end absolute bottom-0"
+      id="bars"
+    ></div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js"></script>
+    <script src="js/bubble.js"></script>
+    <script src="js/insert.js"></script>
+    <script src="js/merge.js"></script>
+    <script src="js/quick.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/selection.js"></script>
+  </body>
+</html>

@@ -105,7 +105,7 @@ function createArray() {
 $(document).ready(function () {
   animTime = parseInt(localStorage.getItem("animTime")) || 10;
   numBars = parseInt(localStorage.getItem("numBars")) || 30;
-  barWidth = parseInt(localStorage.getItem("barWidth")) || Math.floor(window.innerWidth / (numBars * 1.2));
+  barWidth = parseInt(localStorage.getItem("barWidth")) || (window.innerWidth < 640 ? Math.floor(window.innerWidth / (numBars * 1.2)) : Math.floor(window.innerWidth / (3 * numBars * 1.2)));
   displayAnims = JSON.parse(localStorage.getItem("displayAnims")) || true;
 
   $("#animTimeInput").attr("value", Math.round(Math.sqrt(animTime) * 5));
@@ -158,7 +158,7 @@ $(document).ready(function () {
     $("#numBarsLabel").text("Number of bars: " + numBars);
 
     localStorage.setItem("numBars", $(this).val());
-    $("#barWidthInput").attr("max", window.innerWidth / (barWidth * 1.2));
+    $("#barWidthInput").attr("max", window.innerWidth / (numBars * 1.2));
     createArray();
   });
 
@@ -167,7 +167,7 @@ $(document).ready(function () {
     $("#barWidthLabel").text("Bars width: " + barWidth);
 
     localStorage.setItem("barWidth", $(this).val());
-    $("#numBarsInput").attr("max", window.innerWidth / (numBars * 1.2));
+    $("#numBarsInput").attr("max", window.innerWidth / (barWidth * 1.2));
     createArray();
   });
 

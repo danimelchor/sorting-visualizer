@@ -1,9 +1,15 @@
 async function bubbleSort() {
   for (let i = 0; i < numBars; i++) {
     for (let j = 0; j < numBars - i - 1; j++) {
+      if (userPaused) {
+        return;
+      }
+
       if (arr[j + 1] < arr[j]) {
         swap(j, j + 1);
       }
+      await countIncrease();
+
       setColor(DEFAULT, 0, numBars - i);
       setColor(SWAPPING, j);
       setColor(SWAPPING, j + 1);
@@ -13,5 +19,5 @@ async function bubbleSort() {
   }
 
   await sleep(animTime * 2);
-  setColor(DEFAULT, 0, numBars);
+  setColor(SORTED, 0, numBars);
 }

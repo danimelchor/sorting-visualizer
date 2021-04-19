@@ -7,12 +7,17 @@ async function insertSort() {
     setColor(PIVOT, i);
 
     for (let j = i - 1; j >= 0; j--) {
+      if (userPaused) {
+        return;
+      }
+
       if (arr[j] < copy) {
         replaceIndex = j + 1;
         break;
       } else {
         temp[j + 1] = temp[j];
       }
+      await countIncrease();
 
       setColor(SORTED, 0, i);
       setColor(SWAPPING, j);
@@ -27,5 +32,5 @@ async function insertSort() {
   }
 
   await sleep(animTime * 2);
-  setColor(DEFAULT, 0, numBars);
+  setColor(SORTED, 0, numBars);
 }

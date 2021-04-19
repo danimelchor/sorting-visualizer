@@ -1,13 +1,17 @@
 async function quickSort(first, last) {
+  if (userPaused) {
+    return;
+  }
+
   if (first < last) {
     let split = await partition(first, last);
     await quickSort(first, split);
     await quickSort(split + 1, last);
   }
 
-  if (first == 0 && last == numBars - 1) {
+  if (first == 0 && last == numBars - 1 && !userPaused) {
     await sleep(animTime*2);
-    setColor(DEFAULT, first, last + 1);
+    setColor(SORTED, first, last + 1);
   }
 }
 
@@ -19,12 +23,21 @@ async function partition(first, last) {
   let j = last + 1;
 
   do {
+    if (userPaused) {
+      return;
+    }
+
     do {
       i++;
+      await countIncrease();
     } while (arr[i] < pivot);
+
     do {
       j--;
+      await countIncrease();
     } while (arr[j] > pivot);
+
+    counter -= 2;
 
     if (i < j) {
       if (i == animPivot || j == animPivot) animPivot = animPivot == i ? j : i;

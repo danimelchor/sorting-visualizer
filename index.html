@@ -14,6 +14,7 @@
     <title>Sorting Visualizer</title>
   </head>
   <body class="bg-gray-800">
+    <div id="count" class="absolute top-0 left-0 text-white m-5 text-lg">Number of moves: 0</div>
     <div class="flex justify-center content-center w-2/3 m-auto mt-12">
       <div class="inline-block align-middle w-1/3">
         <div class="w-64 block align-middle m-5">
@@ -28,7 +29,7 @@
             name="numBars"
             type="range"
             min="0"
-            max="2000"
+            max="100"
             class="block w-full mt-2"
             id="animTimeInput"
           />
@@ -95,7 +96,11 @@
           Random data
         </button>
         <div class="w-full block align-middle my-5 block text-left">
-          <input type="checkbox" class="inline-block mr-5 w-6 h-6" />
+          <input
+            id="displayAnims"
+            type="checkbox"
+            class="inline-block mr-5 w-6 h-6"
+          />
           <label
             for="wantsAnim"
             class="text-gray-100 inline-block text-xl w-5/6 align-middle"

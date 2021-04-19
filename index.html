@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/index.css" />
     <title>Sorting Visualizer</title>
   </head>
-  <body class="bg-gray-800 min-h-screen md:min-h-0">
+  <body class="bg-gray-800 min-h-screen md:min-h-0 overflow-x-hidden">
     <div id="count" class="absolute top-0 left-0 text-white m-5 text-lg">Number of moves: 0</div>
     <div class="md:flex justify-center content-center w-full md:w-2/3 m-auto mt-12">
       <div class="block p-5 text-center lg:text-left lg:inline-block align-middle w-screen md:w-1/2 xl:w-1/3">
@@ -28,7 +28,7 @@
             name="numBars"
             type="range"
             min="0"
-            max="100"
+            max="10000"
             class="block w-full mt-2"
             id="animTimeInput"
           />

@@ -147,7 +147,7 @@ $(document).ready(function () {
     animTime = parseInt($(this).val());
 
     // Squaring the slider value provides more control with smaller values
-    animTime = Math.round(Math.pow(animTime / Math.sqrt(5), 2));
+    animTime = Math.round(Math.pow(animTime / (100* Math.sqrt(5)), 2));
     $("#animTimeLabel").text("Animation time: " + animTime + "ms");
 
     localStorage.setItem("animTime", animTime);

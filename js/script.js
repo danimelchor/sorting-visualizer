@@ -103,10 +103,10 @@ function createArray() {
 }
 
 $(document).ready(function () {
-  animTime = parseInt(localStorage.getItem("animTime")) ?? 30;
-  numBars = parseInt(localStorage.getItem("numBars")) ?? 30;
-  barWidth = parseInt(localStorage.getItem("barWidth")) ?? 30;
-  displayAnims = JSON.parse(localStorage.getItem("displayAnims")) ?? true;
+  animTime = parseInt(localStorage.getItem("animTime")) || 30;
+  numBars = parseInt(localStorage.getItem("numBars")) || 30;
+  barWidth = parseInt(localStorage.getItem("barWidth")) || 30;
+  displayAnims = JSON.parse(localStorage.getItem("displayAnims")) || true;
 
   $("#animTimeInput").attr("value", Math.round(Math.sqrt(animTime) * 5));
   $("#animTimeLabel").text("Animation time: " + animTime + "ms");

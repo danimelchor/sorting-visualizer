@@ -75,7 +75,7 @@ function uniqueList(x, y) {
 }
 
 function createArray() {
-  barHeightMult = (window.innerHeight * 2) / (3 * numBars);
+  barHeightMult = (window.innerHeight) / (2 * numBars);
   let unique = uniqueList(1, numBars + 1);
   arr = [];
 

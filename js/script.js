@@ -161,7 +161,7 @@ $(document).ready(function () {
     $("#numBarsLabel").text("Number of bars: " + numBars);
 
     localStorage.setItem("numBars", $(this).val());
-    $("#barWidthInput").attr("max", window_width_offset / (numBars * 1.2));
+    $("#barWidthInput").attr("max", Math.floor(window_width_offset / (numBars * 1.2)));
     createArray();
   });
 
@@ -170,7 +170,7 @@ $(document).ready(function () {
     $("#barWidthLabel").text("Bars width: " + barWidth);
 
     localStorage.setItem("barWidth", $(this).val());
-    $("#numBarsInput").attr("max", window_width_offset / (barWidth * 1.2));
+    $("#numBarsInput").attr("max", Math.floor(window_width_offset / (barWidth * 1.2)));
     createArray();
   });
 

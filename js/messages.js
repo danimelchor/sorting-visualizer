@@ -8,12 +8,11 @@ async function countIncrease(reset) {
 }
 
 async function showError() {
-  console.log("error");
-
   var $error = $("<div>");
   $error.text("Please select a sorting algorithm");
   $error.addClass("errorMsg");
   $error.appendTo("body");
+  $error.css("z-index", "100");
   await sleep(2000);
 
   $error.remove();

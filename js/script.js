@@ -272,5 +272,4 @@ $(window).on("resize", function () {
   $("#numBarsInput").attr("value", numBars);
   $("#numBarsLabel").text("Number of bars: " + numBars);
   localStorage.setItem("numBars", numBars);
-  createArray();
 });

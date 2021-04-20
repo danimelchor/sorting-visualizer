@@ -202,8 +202,9 @@ $(document).ready(function () {
     createArray();
   });
 
-  $("#barWidthInput").on("input", function () {
+  $("#barWidthInput").on("input", async function () {
     barWidth = parseInt($(this).val());
+    await resetBars();
     adjustInputVisuals();
 
     localStorage.setItem("barWidth", $(this).val());

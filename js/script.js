@@ -13,6 +13,7 @@ var userPaused = false;
 var displayAnims = true;
 
 var arr = [];
+var selectedAlgo;
 
 var numBars;
 var maxNumBars;
@@ -27,14 +28,6 @@ var counter = 0;
 
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-async function countIncrease(reset) {
-  reset = reset || false;
-  counter++;
-
-  if (reset) counter = 0;
-  $("#count").html("Number of moves: " + counter);
 }
 
 async function adjustHeight(i, n) {
@@ -79,7 +72,7 @@ function uniqueList(x, y) {
 }
 
 function createArray() {
-  barHeightMult = (window.innerHeight) / (2 * numBars);
+  barHeightMult = window.innerHeight / (2 * numBars);
   let unique = uniqueList(1, numBars + 1);
   arr = [];
 
@@ -111,7 +104,11 @@ $(document).ready(function () {
 
   animTime = parseInt(localStorage.getItem("animTime")) || 10;
   numBars = parseInt(localStorage.getItem("numBars")) || 30;
-  barWidth = parseInt(localStorage.getItem("barWidth")) || (window.innerWidth < 640 ? Math.floor(window_width_offset / (numBars * 1.2)) : Math.floor(window_width_offset / (3 * numBars * 1.2)));
+  barWidth =
+    parseInt(localStorage.getItem("barWidth")) ||
+    (window.innerWidth < 640
+      ? Math.floor(window_width_offset / (numBars * 1.2))
+      : Math.floor(window_width_offset / (3 * numBars * 1.2)));
   displayAnims = JSON.parse(localStorage.getItem("displayAnims")) || true;
 
   $("#animTimeInput").attr("value", Math.round(Math.sqrt(animTime) * 5));
@@ -153,7 +150,7 @@ $(document).ready(function () {
     animTime = parseInt($(this).val());
 
     // Squaring the slider value provides more control with smaller values
-    animTime = Math.round(Math.pow(animTime / (100* Math.sqrt(5)), 2));
+    animTime = Math.round(Math.pow(animTime / (100 * Math.sqrt(5)), 2));
     $("#animTimeLabel").text("Animation time: " + animTime + "ms");
 
     localStorage.setItem("animTime", animTime);
@@ -178,7 +175,7 @@ $(document).ready(function () {
   });
 
   $("#sort").click(async function () {
-    let selected = $("#algo-select option:selected").val();
+    selectedAlgo = $("#algo-select option:selected").val();
     countIncrease(true);
 
     if (animationRunning) {
@@ -193,27 +190,28 @@ $(document).ready(function () {
       $("#sort").css("cursor", "default");
       $("#sort").prop("disabled", false);
     } else {
-      $("#sort").text('Pause');
-      $("#sort").addClass('pause')
+      $("#sort").text("Pause");
+      $("#sort").addClass("pause");
+      updateStats();
       animationRunning = true;
 
-      if (selected == "bubble") {
+      if (selectedAlgo == "bubble") {
         await bubbleSort();
-      } else if (selected == "insert") {
+      } else if (selectedAlgo == "insert") {
         await insertSort();
-      } else if (selected == "merge") {
+      } else if (selectedAlgo == "merge") {
         await mergeSort(0, numBars - 1);
-      } else if (selected == "quick") {
+      } else if (selectedAlgo == "quick") {
         await quickSort(0, numBars - 1);
-      } else if (selected == "selection") {
+      } else if (selectedAlgo == "selection") {
         await selectionSort();
       } else {
         showError();
       }
 
       animationRunning = false;
-      $("#sort").text('Sort!');
-      $("#sort").removeClass('pause')
+      $("#sort").text("Sort!");
+      $("#sort").removeClass("pause");
     }
     $(this).prop("disabled", false);
   });

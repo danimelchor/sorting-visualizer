@@ -34,10 +34,17 @@ body {
 .errorMsg {
   padding: 20px;
   background-color: #F87171;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
+  text-align: center;
+}
+
+#stats div {
+  border: 1px solid white;
+  padding: 1.8rem;
+  color: white;
   text-align: center;
 }
 

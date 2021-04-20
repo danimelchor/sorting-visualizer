@@ -31,6 +31,16 @@ body {
   background-color: #F59E0B;
 }
 
+.errorMsg {
+  padding: 20px;
+  background-color: #F87171;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  text-align: center;
+}
+
 
 /* STYLED USING https://www.cssportal.com/style-input-range/ */
 input[type=range] {

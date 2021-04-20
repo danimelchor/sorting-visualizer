@@ -207,6 +207,8 @@ $(document).ready(function () {
         await quickSort(0, numBars - 1);
       } else if (selected == "selection") {
         await selectionSort();
+      } else {
+        showError();
       }
 
       animationRunning = false;

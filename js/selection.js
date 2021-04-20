@@ -26,6 +26,6 @@ async function selectionSort() {
     setColor(DEFAULT, index + 1, numBars);
   }
 
-  await sleep(animTime * 2);
+  await sleep(animTime);
   setColor(SORTED, 0, numBars);
 }

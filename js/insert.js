@@ -30,7 +30,4 @@ async function insertSort() {
       adjustHeight(i);
     }
   }
-
-  await sleep(animTime * 2);
-  setColor(SORTED, 0, numBars);
 }

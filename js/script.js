@@ -1,17 +1,21 @@
+// Colors used for the animations
 const DEFAULT = ["#d85151", "#b93939"];
 const SORTED = ["#3fed00", "#35c600"];
 const PIVOT = ["#8f8f8f", "#595959"];
 const UNSELECTED = ["#ffa5a5", "#bc7676"];
 const SWAPPING = ["#fcac00", "#e08002"];
 
+// How much the bars width is (99% of screen by default)
 const WIDTH = 0.99;
 
+// Stores the width of screen * WIDTH constant
 var window_width_offset;
 
 var animationRunning = false;
 var userPaused = false;
 var displayAnims = true;
 
+// arr is the main array of values to sort
 var arr = [];
 var selectedAlgo;
 
@@ -26,10 +30,13 @@ var animTime;
 
 var counter = 0;
 
+// Basic sleep method
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// i is the index of the bar
+// n is an optional argument for the height of n
 async function adjustHeight(i, n) {
   n = n || arr[i];
   $("#bar" + i).css("height", barHeightMult * n);
@@ -44,8 +51,11 @@ async function swap(i, j) {
   adjustHeight(j);
 }
 
+// Changes color of bars from i to j (or only bar i)
+// Allows an optional argument init to allow recoloring
+// even when the user set their preference to false
 function setColor(color, i, j, init) {
-  j = j || -1;
+  j = j || -1; // Optional argument
   init = init || false;
 
   if (!(displayAnims || init)) return;
@@ -61,6 +71,7 @@ function setColor(color, i, j, init) {
   }
 }
 
+// Creates a unique list of numbers from x to y
 function uniqueList(x, y) {
   let list = [];
 
@@ -72,26 +83,27 @@ function uniqueList(x, y) {
 }
 
 function createArray() {
+  // Bars take 1/2 of the screen height where the tallest bar is 1/2 of screen
   barHeightMult = window.innerHeight / (2 * numBars);
   let unique = uniqueList(1, numBars + 1);
   arr = [];
 
   $("#bars").html("");
   for (let i = 0; i < numBars; i++) {
+    // Selecting random unique number
     let randomIndex = Math.floor(Math.random() * unique.length);
     var n = unique[randomIndex];
-
     unique.splice(randomIndex, 1);
     arr.push(n);
 
+    // Creating the bar div
     var $bar = $("<div>");
     $bar.attr("class", "bar transition-colors duration-150");
+    $bar.attr("id", "bar" + i);
     $bar.css("width", barWidth.toString() + "px");
     $bar.css("height", (barHeightMult * n).toString() + "px");
     $bar.css("margin-right", barWidth * 0.1 + "px");
     $bar.css("margin-left", barWidth * 0.1 + "px");
-
-    $bar.attr("id", "bar" + i);
 
     $bar.appendTo("#bars");
   }
@@ -102,15 +114,17 @@ function createArray() {
 $(document).ready(function () {
   window_width_offset = window.innerWidth * WIDTH;
 
+  // Getting stored values or setting a default one
   animTime = parseInt(localStorage.getItem("animTime")) || 10;
   numBars = parseInt(localStorage.getItem("numBars")) || 30;
   barWidth =
     parseInt(localStorage.getItem("barWidth")) ||
     (window.innerWidth < 640
       ? Math.floor(window_width_offset / (numBars * 1.2))
-      : Math.floor(window_width_offset / (3 * numBars * 1.2)));
-  displayAnims = JSON.parse(localStorage.getItem("displayAnims")) || true;
+      : Math.floor(window_width_offset / (3 * numBars * 1.2))); // 1/3rd of screen for computers or full screen mobile
+  displayAnims = JSON.parse(localStorage.getItem("displayAnims")) ?? true;
 
+  // Adjusting the range input values and label text
   $("#animTimeInput").attr("value", Math.round(Math.sqrt(animTime) * 5));
   $("#animTimeLabel").text("Animation time: " + animTime + "ms");
 
@@ -124,6 +138,7 @@ $(document).ready(function () {
 
   $("#displayAnims").prop("checked", displayAnims);
 
+  // Initial array creation
   createArray();
 
   $("#displayAnims").click(function () {
@@ -139,7 +154,8 @@ $(document).ready(function () {
       userPaused = true;
       animationRunning = false;
 
-      await sleep(100);
+      await sleep(300);
+
       setColor(DEFAULT, 0, numBars);
       userPaused = false;
     }
@@ -161,7 +177,10 @@ $(document).ready(function () {
     $("#numBarsLabel").text("Number of bars: " + numBars);
 
     localStorage.setItem("numBars", $(this).val());
-    $("#barWidthInput").attr("max", Math.floor(window_width_offset / (numBars * 1.2)));
+    $("#barWidthInput").attr(
+      "max",
+      Math.floor(window_width_offset / (numBars * 1.2)) // Update the max value the slider can have
+    );
     createArray();
   });
 
@@ -170,7 +189,10 @@ $(document).ready(function () {
     $("#barWidthLabel").text("Bars width: " + barWidth);
 
     localStorage.setItem("barWidth", $(this).val());
-    $("#numBarsInput").attr("max", Math.floor(window_width_offset / (barWidth * 1.2)));
+    $("#numBarsInput").attr(
+      "max",
+      Math.floor(window_width_offset / (barWidth * 1.2)) // Update the max value the slider can have
+    );
     createArray();
   });
 
@@ -181,18 +203,25 @@ $(document).ready(function () {
     if (animationRunning) {
       userPaused = true;
       animationRunning = false;
-      $("#sort").css("cursor", "wait");
-      $("#sort").prop("disabled", true);
 
-      await sleep(100);
+      // Styling the play button
+      $(this).css("cursor", "wait");
+      $(this).prop("disabled", true);
+
+      await sleep(300);
       setColor(DEFAULT, 0, numBars);
       userPaused = false;
-      $("#sort").css("cursor", "default");
-      $("#sort").prop("disabled", false);
+
+      // Styling back the play button
+      $(this).css("cursor", "default");
+      $(this).prop("disabled", false);
     } else {
-      $("#sort").text("Pause");
-      $("#sort").addClass("pause");
+      $(this).text("Pause");
+      $(this).addClass("pause");
+
+      // Displaying the algo stats
       updateStats();
+
       animationRunning = true;
 
       if (selectedAlgo == "bubble") {
@@ -210,9 +239,8 @@ $(document).ready(function () {
       }
 
       animationRunning = false;
-      $("#sort").text("Sort!");
-      $("#sort").removeClass("pause");
+      $(this).text("Sort!");
+      $(this).removeClass("pause");
     }
-    $(this).prop("disabled", false);
   });
 });

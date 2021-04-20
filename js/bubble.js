@@ -17,7 +17,4 @@ async function bubbleSort() {
     }
     setColor(SORTED, numBars - i - 1, numBars);
   }
-
-  await sleep(animTime * 2);
-  setColor(SORTED, 0, numBars);
 }

@@ -30,7 +30,7 @@ async function merge(start1, end1, start2, end2) {
       swap(k, await findElement(start1, end2, right[j]));
       j++;
     }
-    
+
     await countIncrease();
     await mergeAdjust(k, start1, end2);
     await sleep(animTime);
@@ -53,6 +53,8 @@ async function mergeAdjust(k, start, end) {
   }
 }
 
+// This method inscreases the number of steps
+// but looks better when animated
 async function findElement(start, end, i) {
   for (let index = start; index < end + 1; index++) {
     if (arr[index] == i) return index;

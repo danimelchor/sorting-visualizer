@@ -1,3 +1,4 @@
+// Need a counter function to update text
 async function countIncrease(reset) {
   reset = reset || false;
   counter++;

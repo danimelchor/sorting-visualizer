@@ -10,7 +10,7 @@ This project is coded in JavaScript using JQuery. Even though this is clearly no
 
 ## Contribution
 
-This project is partly based on [this](https://github.com/mahfuzrifat7/SortingVisualizer) project by mahfuzrifat7. I saw several issues with his project such as not enough control over the ammount of bars/animation speed.
+This project is partly based on [this](https://github.com/mahfuzrifat7/SortingVisualizer) project by mahfuzrifat7. I saw several issues with his project such as not enough control over the ammount of bars/animation speed so I decided to create my own project from scratch using part of his code.
 
 This project is MIT licensed.
 

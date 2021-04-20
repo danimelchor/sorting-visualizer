@@ -5,8 +5,8 @@ const PIVOT = ["#8f8f8f", "#595959"];
 const UNSELECTED = ["#ffa5a5", "#bc7676"];
 const SWAPPING = ["#fcac00", "#e08002"];
 
-// How much the bars width is (99% of screen by default)
-const WIDTH = 0.99;
+// How much the bars width is (97% of screen by default)
+const WIDTH = 0.97;
 
 // Stores the width of screen * WIDTH constant
 var window_width_offset;
@@ -33,6 +33,25 @@ var counter = 0;
 // Basic sleep method
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function createLeyed() {
+  let listColors = [DEFAULT, SORTED, PIVOT, UNSELECTED, SWAPPING];
+  let colorNames = ["Default", "Sorted", "Pivot", "Unselected", "Swapping"];
+
+  for (let i = 0; i < listColors.length; i++) {
+    var $leyendItem = $("<div>");
+    $leyendItem.attr("class", "inline-block m-3 md:my-0");
+    $leyendItem.append(
+      "<div style='background: " +
+        listColors[i][0] +
+        "' class='w-6 h-6 mr-2 inline-block align-middle'></div>"
+    );
+    $leyendItem.append(
+      "<span class='text-white align-middle'>" + colorNames[i] + "</span>"
+    );
+    $("#leyend").append($leyendItem);
+  }
 }
 
 // i is the index of the bar
@@ -113,6 +132,7 @@ function createArray() {
 
 $(document).ready(function () {
   window_width_offset = window.innerWidth * WIDTH;
+  createLeyed();
 
   // Getting stored values or setting a default one
   animTime = parseInt(localStorage.getItem("animTime")) || 10;

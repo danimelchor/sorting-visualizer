@@ -45,7 +45,7 @@ async function partition(first, last) {
       swap(i, j);
 
       setColor(UNSELECTED, 0, first);
-      setColor(UNSELECTED, last, numBars);
+      setColor(UNSELECTED, last+1, numBars);
       setColor(DEFAULT, first, last);
       setColor(SWAPPING, i);
       setColor(SWAPPING, j);

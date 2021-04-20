@@ -36,7 +36,7 @@ function updateStats() {
     avg = best;
     worst = best;
   } else if (selectedAlgo == "quick") {
-    best = "O(n)";
+    best = "O(n log2(n))";
     avg = best;
     worst = "O(n²)";
   } else if (selectedAlgo == "selection") {

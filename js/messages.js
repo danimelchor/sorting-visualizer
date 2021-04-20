@@ -59,3 +59,22 @@ function updateStats() {
     "Best case scenario: " + best + " Operations"
   );
 }
+
+function adjustInputVisuals() {
+  var animText = window.innerWidth < 640 ? "Speed: " : "Animation time: ";
+  var barText = window.innerWidth < 640 ? "Bars: " : "Number of bars: ";
+  var widthText = window.innerWidth < 640 ? "Width: " : "Bars width: ";
+
+  $("#animTimeInput").attr("value", Math.round(Math.sqrt(animTime) * 5));
+  $("#animTimeLabel").text(animText + animTime + "ms");
+
+  $("#numBarsInput").attr("max", window_width_offset / (barWidth * 1.2));
+  $("#numBarsInput").attr("value", numBars);
+  $("#numBarsLabel").text(barText + numBars);
+
+  $("#barWidthInput").attr("max", window_width_offset / (numBars * 1.2));
+  $("#barWidthInput").attr("value", barWidth);
+  $("#barWidthLabel").text(widthText + barWidth);
+
+  $("#displayAnims").prop("checked", displayAnims);
+}

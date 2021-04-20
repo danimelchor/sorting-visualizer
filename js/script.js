@@ -103,9 +103,13 @@ function uniqueList(x, y) {
 
 function createArray() {
   // Bars take 1/2 of the screen height where the tallest bar is 1/2 of screen
-  barHeightMult = window.innerHeight / (2 * numBars);
+  barHeightMult =
+    window.innerWidth >= 640
+      ? window.innerHeight / (2 * numBars)
+      : window.innerHeight / (2.5 * numBars);
   let unique = uniqueList(1, numBars + 1);
   arr = [];
+  console.log(barHeightMult * numBars);
 
   $("#bars").html("");
   for (let i = 0; i < numBars; i++) {
@@ -145,18 +149,7 @@ $(document).ready(function () {
   displayAnims = JSON.parse(localStorage.getItem("displayAnims")) ?? true;
 
   // Adjusting the range input values and label text
-  $("#animTimeInput").attr("value", Math.round(Math.sqrt(animTime) * 5));
-  $("#animTimeLabel").text("Animation time: " + animTime + "ms");
-
-  $("#numBarsInput").attr("max", window_width_offset / (barWidth * 1.2));
-  $("#numBarsInput").attr("value", numBars);
-  $("#numBarsLabel").text("Number of bars: " + numBars);
-
-  $("#barWidthInput").attr("max", window_width_offset / (numBars * 1.2));
-  $("#barWidthInput").attr("value", barWidth);
-  $("#barWidthLabel").text("Bars width: " + barWidth);
-
-  $("#displayAnims").prop("checked", displayAnims);
+  adjustInputVisuals();
 
   // Initial array creation
   createArray();
@@ -187,14 +180,14 @@ $(document).ready(function () {
 
     // Squaring the slider value provides more control with smaller values
     animTime = Math.round(Math.pow(animTime / (100 * Math.sqrt(5)), 2));
-    $("#animTimeLabel").text("Animation time: " + animTime + "ms");
+    adjustInputVisuals();
 
     localStorage.setItem("animTime", animTime);
   });
 
   $("#numBarsInput").on("input", function () {
     numBars = parseInt($(this).val());
-    $("#numBarsLabel").text("Number of bars: " + numBars);
+    adjustInputVisuals();
 
     localStorage.setItem("numBars", $(this).val());
     $("#barWidthInput").attr(
@@ -206,7 +199,7 @@ $(document).ready(function () {
 
   $("#barWidthInput").on("input", function () {
     barWidth = parseInt($(this).val());
-    $("#barWidthLabel").text("Bars width: " + barWidth);
+    adjustInputVisuals();
 
     localStorage.setItem("barWidth", $(this).val());
     $("#numBarsInput").attr(
@@ -268,8 +261,6 @@ $(document).ready(function () {
 $(window).on("resize", function () {
   window_width_offset = window.innerWidth * WIDTH;
   numBars = Math.floor(window_width_offset / (barWidth * 1.2));
-  $("#numBarsInput").attr("max", window_width_offset / (barWidth * 1.2));
-  $("#numBarsInput").attr("value", numBars);
-  $("#numBarsLabel").text("Number of bars: " + numBars);
+  adjustInputVisuals();
   localStorage.setItem("numBars", numBars);
 });

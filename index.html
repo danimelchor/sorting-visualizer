@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/reset.css" />
     <link
@@ -11,7 +11,7 @@
     />
     <link rel="stylesheet" href="css/index.css" />
     <link rel="shortcut icon" type="image/jpg" href="favicon.ico" />
-    <title>Sorting Visualizer</title>
+    <title>sorting visualizer</title>
     <script
       src="https://kit.fontawesome.com/d0ad8ff8e8.js"
       crossorigin="anonymous"
@@ -24,17 +24,17 @@
         href="https://danielmelchor.com"
       >
         <i class="fas fa-arrow-left mr-2 text-3xl md:text-lg"></i>
-        <span class="hidden md:inline">Go to my website</span>
+        <span class="hidden md:inline">go to my website</span>
       </a>
       <a
         class="text-yellow-500 hover:text-yellow-400 hover:underline inline-block float-right"
         href="https://github.com/danimelchor/sorting-visualizer"
       >
-        <span class="hidden md:inline">Go to the GitHub repo</span>
+        <span class="hidden md:inline">go to the github repo</span>
         <i class="fab fa-github ml-2 text-3xl md:text-lg"></i>
       </a>
-      <div id="count" class="text-white text-2xl md:text-lg block numMoves">
-        Number of moves: 0
+      <div id="count" class="text-white text-xl md:text-lg block numMoves">
+        number of moves: 0
       </div>
     </div>
     <div
@@ -44,64 +44,9 @@
         id="stats"
         class="block lg:inline-block align-middle w-screen md:w-1/2 xl:w-1/3 p-5"
       >
-        <div>Worst case scenario: - Operations</div>
-        <div>Average case scenario: - Operations</div>
-        <div>Best case scenario: - Operations</div>
-      </div>
-      <div
-        class="block p-5 text-center lg:text-left lg:inline-block align-middle w-screen md:w-1/2 xl:w-1/3 md:mx-3"
-      >
-        <div class="w-full block align-middle mb-5 lg:m-5">
-          <label
-            id="animTimeLabel"
-            for="barWidth"
-            class="text-gray-100 block text-xl"
-          >
-            Animation Speed:
-          </label>
-          <input
-            name="numBars"
-            type="range"
-            min="0"
-            max="10000"
-            class="block w-full mt-2"
-            id="animTimeInput"
-          />
-        </div>
-        <div class="w-full block align-middle my-5 lg:m-5">
-          <label
-            id="numBarsLabel"
-            for="barWidth"
-            class="text-gray-100 block text-xl"
-          >
-            Number of bars:
-          </label>
-          <input
-            name="numBars"
-            type="range"
-            min="3"
-            max="10"
-            class="block w-full mt-2"
-            id="numBarsInput"
-          />
-        </div>
-        <div class="w-full block align-middle my-5 lg:m-5">
-          <label
-            id="barWidthLabel"
-            for="barWidth"
-            class="text-gray-100 block text-xl"
-          >
-            Bars Width:
-          </label>
-          <input
-            name="barWidth"
-            type="range"
-            min="4"
-            max="10"
-            class="block w-full mt-2"
-            id="barWidthInput"
-          />
-        </div>
+        <div>worst case scenario: - operations</div>
+        <div>average case scenario: - operations</div>
+        <div>best case scenario: - operations</div>
       </div>
       <div
         class="block lg:inline-block align-middle w-screen md:w-1/2 xl:w-1/3 p-5"
@@ -113,24 +58,24 @@
             class="rounded p-5 bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold w-full border-blue-500 hover:border-blue-700 focus:outline-none my-1"
           >
             <option>--</option>
-            <option value="selection">Selection sort</option>
-            <option value="bubble">Bubble sort</option>
-            <option value="insert">Insert sort</option>
-            <option value="quick">Quicksort</option>
-            <option value="merge">Merge sort</option>
+            <option value="selection">selection sort</option>
+            <option value="bubble">bubble sort</option>
+            <option value="insert">insert sort</option>
+            <option value="quick">quicksort</option>
+            <option value="merge">merge sort</option>
           </select>
         </div>
         <button
           id="sort"
           class="rounded text-center p-5 bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold w-full focus:outline-none my-1"
         >
-          Sort!
+          sort!
         </button>
         <button
           class="rounded p-5 bg-red-500 my-1 hover:bg-red-700 text-gray-100 font-bold block w-full focus:outline-none"
           id="random-data"
         >
-          error with constant Random data
+          error with constant random data
         </button>
         <div class="w-full block align-middle my-5 block text-left w-full">
           <input
@@ -142,7 +87,7 @@
             for="wantsAnim"
             class="text-gray-100 inline-block text-lg w-5/6 align-middle"
           >
-            Display color animations (will reduce performance)
+            display color animations (will reduce performance)
           </label>
         </div>
       </div>
@@ -151,6 +96,58 @@
       class="w-screen flex justify-center items-end relative"
       id="bars"
     ></div>
+    <div class="p-5 text-center w-screen flex justify-center mt-10">
+      <div class="w-1/3 md:w-2/7 lg:w-1/4 xl:w-1/5 align-bottom">
+        <span
+          id="animTimeLabel"
+          for="barWidth"
+          class="text-gray-100 block text-md md:text-xl"
+        >
+        </span>
+        <input
+          name="numBars"
+          type="range"
+          min="0"
+          max="10000"
+          class="block w-full mt-2"
+          id="animTimeInput"
+        />
+      </div>
+      <div
+        class="w-1/3 md:w-2/7 lg:w-1/4 xl:w-1/5 mx-3 lg:mx-7 xl:mx-10 align-bottom"
+      >
+        <span
+          id="numBarsLabel"
+          for="barWidth"
+          class="text-gray-100 block text-md md:text-xl"
+        >
+        </span>
+        <input
+          name="numBars"
+          type="range"
+          min="3"
+          max="10"
+          class="block w-full mt-2"
+          id="numBarsInput"
+        />
+      </div>
+      <div class="w-1/3 md:w-2/7 lg:w-1/4 xl:w-1/5 align-bottom">
+        <span
+          id="barWidthLabel"
+          for="barWidth"
+          class="text-gray-100 block text-md md:text-xl"
+        >
+        </span>
+        <input
+          name="barWidth"
+          type="range"
+          min="4"
+          max="10"
+          class="block w-full mt-2"
+          id="barWidthInput"
+        />
+      </div>
+    </div>
     <div
       id="leyend"
       class="bg-gray-900 p-5 w-screen fixed bottom-0 text-lg z-50 flex justify-center flex-wrap"

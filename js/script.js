@@ -134,6 +134,20 @@ function createArray() {
   setColor(DEFAULT, 0, arr.length, true);
 }
 
+async function resetBars() {
+  if (animationRunning) {
+    countIncrease(true);
+
+    userPaused = true;
+    animationRunning = false;
+
+    await sleep(300);
+
+    setColor(DEFAULT, 0, numBars);
+    userPaused = false;
+  }
+}
+
 $(document).ready(function () {
   window_width_offset = window.innerWidth * WIDTH;
   createLeyed();
@@ -161,17 +175,7 @@ $(document).ready(function () {
   });
 
   $("#random-data").click(async function () {
-    if (animationRunning) {
-      countIncrease(true);
-
-      userPaused = true;
-      animationRunning = false;
-
-      await sleep(300);
-
-      setColor(DEFAULT, 0, numBars);
-      userPaused = false;
-    }
+    await resetBars();
     createArray();
   });
 
@@ -185,8 +189,9 @@ $(document).ready(function () {
     localStorage.setItem("animTime", animTime);
   });
 
-  $("#numBarsInput").on("input", function () {
+  $("#numBarsInput").on("input", async function () {
     numBars = parseInt($(this).val());
+    await resetBars();
     adjustInputVisuals();
 
     localStorage.setItem("numBars", $(this).val());

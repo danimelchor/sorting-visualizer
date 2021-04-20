@@ -15,7 +15,7 @@
   <body class="bg-gray-800 min-h-screen md:min-h-0">
     <div
       id="count"
-      class="md:absolute top-0 left-0 text-center text-white w-full md:w-auto md:m-0 p-5 text-lg border-b border-white md:border-r"
+      class="md:inline-block text-center text-white w-full md:w-auto md:ml-0 p-5 text-lg border-b border-white md:border-r"
     >
       Number of moves: 0
     </div>
@@ -110,11 +110,11 @@
           <input
             id="displayAnims"
             type="checkbox"
-            class="inline-block mr-5 w-6 h-6"
+            class="inline-block mr-3 w-6 h-6 align-middle"
           />
           <label
             for="wantsAnim"
-            class="text-gray-100 inline-block text-xl w-5/6 align-middle"
+            class="text-gray-100 inline-block text-lg w-5/6 align-middle"
           >
             Display color animations (will reduce performance)
           </label>
@@ -123,7 +123,7 @@
     </div>
 
     <div
-      class="w-screen flex justify-center items-end relative md:absolute bottom-0 mb-4"
+      class="w-screen flex justify-center items-end relative md:absolute bottom-0"
       id="bars"
     ></div>
     <script

@@ -244,3 +244,13 @@ $(document).ready(function () {
     }
   });
 });
+
+$(window).on("resize", function () {
+  window_width_offset = window.innerWidth * WIDTH;
+  numBars = Math.floor(window_width_offset / (barWidth * 1.2));
+  $("#numBarsInput").attr("max", window_width_offset / (barWidth * 1.2));
+  $("#numBarsInput").attr("value", numBars);
+  $("#numBarsLabel").text("Number of bars: " + numBars);
+  localStorage.setItem("numBars", numBars);
+  createArray();
+});

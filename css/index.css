@@ -24,16 +24,16 @@ body {
 }
 
 .pause {
-  background-color: #FBBF24;
+  background-color: #fbbf24;
 }
 
 .pause:hover {
-  background-color: #F59E0B;
+  background-color: #f59e0b;
 }
 
 .errorMsg {
   padding: 20px;
-  background-color: #F87171;
+  background-color: #f87171;
   position: fixed;
   top: 0;
   left: 0;
@@ -48,62 +48,68 @@ body {
   text-align: center;
 }
 
+.numMoves {
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  position: absolute;
+}
 
 /* STYLED USING https://www.cssportal.com/style-input-range/ */
-input[type=range] {
+input[type="range"] {
   height: 33px;
   -webkit-appearance: none;
   margin: 10px 0;
   width: 100%;
   background: transparent;
 }
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none;
 }
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 10px;
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000;
-  background: #3B82F6;
+  background: #3b82f6;
   border-radius: 50px;
   border: 1px solid #000000;
 }
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   box-shadow: 1px 1px 1px #000000;
   border: 1px solid #000000;
   height: 25px;
   width: 25px;
   border-radius: 50px;
-  background: #FFFFFF;
+  background: #ffffff;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -8.5px;
 }
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #3B82F6;
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #3b82f6;
 }
-input[type=range]::-moz-range-track {
+input[type="range"]::-moz-range-track {
   width: 100%;
   height: 10px;
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000;
-  background: #3B82F6;
+  background: #3b82f6;
   border-radius: 50px;
   border: 1px solid #000000;
 }
-input[type=range]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {
   box-shadow: 1px 1px 1px #000000;
   border: 1px solid #000000;
   height: 25px;
   width: 25px;
   border-radius: 50px;
-  background: #FFFFFF;
+  background: #ffffff;
   cursor: pointer;
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   height: 10px;
   cursor: pointer;
@@ -112,31 +118,31 @@ input[type=range]::-ms-track {
   border-color: transparent;
   color: transparent;
 }
-input[type=range]::-ms-fill-lower {
-  background: #3B82F6;
+input[type="range"]::-ms-fill-lower {
+  background: #3b82f6;
   border: 1px solid #000000;
   border-radius: 100px;
   box-shadow: 1px 1px 1px #000000;
 }
-input[type=range]::-ms-fill-upper {
-  background: #3B82F6;
+input[type="range"]::-ms-fill-upper {
+  background: #3b82f6;
   border: 1px solid #000000;
   border-radius: 100px;
   box-shadow: 1px 1px 1px #000000;
 }
-input[type=range]::-ms-thumb {
+input[type="range"]::-ms-thumb {
   margin-top: 1px;
   box-shadow: 1px 1px 1px #000000;
   border: 1px solid #000000;
   height: 25px;
   width: 25px;
   border-radius: 50px;
-  background: #FFFFFF;
+  background: #ffffff;
   cursor: pointer;
 }
-input[type=range]:focus::-ms-fill-lower {
-  background: #3B82F6;
+input[type="range"]:focus::-ms-fill-lower {
+  background: #3b82f6;
 }
-input[type=range]:focus::-ms-fill-upper {
-  background: #3B82F6;
+input[type="range"]:focus::-ms-fill-upper {
+  background: #3b82f6;
 }

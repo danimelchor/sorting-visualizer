@@ -4,6 +4,10 @@ const PIVOT = ["#8f8f8f", "#595959"];
 const UNSELECTED = ["#ffa5a5", "#bc7676"];
 const SWAPPING = ["#fcac00", "#e08002"];
 
+const WIDTH = 0.99;
+
+var window_width_offset;
+
 var animationRunning = false;
 var userPaused = false;
 var displayAnims = true;
@@ -103,19 +107,21 @@ function createArray() {
 }
 
 $(document).ready(function () {
+  window_width_offset = window.innerWidth * WIDTH;
+
   animTime = parseInt(localStorage.getItem("animTime")) || 10;
   numBars = parseInt(localStorage.getItem("numBars")) || 30;
-  barWidth = parseInt(localStorage.getItem("barWidth")) || (window.innerWidth < 640 ? Math.floor(window.innerWidth / (numBars * 1.2)) : Math.floor(window.innerWidth / (3 * numBars * 1.2)));
+  barWidth = parseInt(localStorage.getItem("barWidth")) || (window.innerWidth < 640 ? Math.floor(window_width_offset / (numBars * 1.2)) : Math.floor(window_width_offset / (3 * numBars * 1.2)));
   displayAnims = JSON.parse(localStorage.getItem("displayAnims")) || true;
 
   $("#animTimeInput").attr("value", Math.round(Math.sqrt(animTime) * 5));
   $("#animTimeLabel").text("Animation time: " + animTime + "ms");
 
-  $("#numBarsInput").attr("max", window.innerWidth / (barWidth * 1.2));
+  $("#numBarsInput").attr("max", window_width_offset / (barWidth * 1.2));
   $("#numBarsInput").attr("value", numBars);
   $("#numBarsLabel").text("Number of bars: " + numBars);
 
-  $("#barWidthInput").attr("max", window.innerWidth / (numBars * 1.2));
+  $("#barWidthInput").attr("max", window_width_offset / (numBars * 1.2));
   $("#barWidthInput").attr("value", barWidth);
   $("#barWidthLabel").text("Bars width: " + barWidth);
 
@@ -158,7 +164,7 @@ $(document).ready(function () {
     $("#numBarsLabel").text("Number of bars: " + numBars);
 
     localStorage.setItem("numBars", $(this).val());
-    $("#barWidthInput").attr("max", window.innerWidth / (numBars * 1.2));
+    $("#barWidthInput").attr("max", window_width_offset / (numBars * 1.2));
     createArray();
   });
 
@@ -167,7 +173,7 @@ $(document).ready(function () {
     $("#barWidthLabel").text("Bars width: " + barWidth);
 
     localStorage.setItem("barWidth", $(this).val());
-    $("#numBarsInput").attr("max", window.innerWidth / (barWidth * 1.2));
+    $("#numBarsInput").attr("max", window_width_offset / (barWidth * 1.2));
     createArray();
   });
 
@@ -187,6 +193,8 @@ $(document).ready(function () {
       $("#sort").css("cursor", "default");
       $("#sort").prop("disabled", false);
     } else {
+      $("#sort").text('Pause');
+      $("#sort").addClass('pause')
       animationRunning = true;
 
       if (selected == "bubble") {
@@ -202,6 +210,8 @@ $(document).ready(function () {
       }
 
       animationRunning = false;
+      $("#sort").text('Sort!');
+      $("#sort").removeClass('pause')
     }
     $(this).prop("disabled", false);
   });

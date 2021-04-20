@@ -23,6 +23,14 @@ body {
   transform: translateY(-50%);
 }
 
+.pause {
+  background-color: #FBBF24;
+}
+
+.pause:hover {
+  background-color: #F59E0B;
+}
+
 
 /* STYLED USING https://www.cssportal.com/style-input-range/ */
 input[type=range] {

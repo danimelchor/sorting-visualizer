@@ -6,3 +6,19 @@ body {
   border-radius: 5px;
   display: inline-block;
 }
+
+#algo-select {
+  -webkit-appearance: none;
+}
+
+#select-arrow {
+  height: 0;
+  width: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid white;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}

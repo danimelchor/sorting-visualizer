@@ -40,7 +40,7 @@ function updateStats() {
     avg = best;
     worst = "O(n²)";
   } else if (selectedAlgo == "selection") {
-    best = "O(n)";
+    best = "O(n²)";
     avg = best;
     worst = best;
   } else {

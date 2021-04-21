@@ -11,7 +11,7 @@
     />
     <link rel="stylesheet" href="css/index.css" />
     <link rel="shortcut icon" type="image/jpg" href="favicon.ico" />
-    <title>sorting visualizer</title>
+    <title>Sorting Visualizer</title>
     <script
       src="https://kit.fontawesome.com/d0ad8ff8e8.js"
       crossorigin="anonymous"
@@ -24,17 +24,20 @@
         href="https://danielmelchor.com"
       >
         <i class="fas fa-arrow-left mr-2 text-3xl md:text-lg"></i>
-        <span class="hidden md:inline">go to my website</span>
+        <span class="hidden md:inline">Go to my website</span>
       </a>
       <a
         class="text-yellow-500 hover:text-yellow-400 hover:underline inline-block float-right"
         href="https://github.com/danimelchor/sorting-visualizer"
       >
-        <span class="hidden md:inline">go to the github repo</span>
+        <span class="hidden md:inline">Go to the github repo</span>
         <i class="fab fa-github ml-2 text-3xl md:text-lg"></i>
       </a>
-      <div id="count" class="text-white text-xl md:text-lg block numMoves">
-        number of moves: 0
+      <div
+        id="count"
+        class="text-white text-lg sm:text-xl md:text-lg block numMoves"
+      >
+        Number of moves: 0
       </div>
     </div>
     <div
@@ -55,29 +58,29 @@
           <div id="select-arrow"></div>
           <select
             id="algo-select"
-            class="rounded p-5 bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold w-full border-blue-500 hover:border-blue-700 focus:outline-none my-1"
+            class="rounded px-5 py-3 bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold w-full border-blue-500 hover:border-blue-700 focus:outline-none my-1"
           >
             <option>--</option>
-            <option value="selection">selection sort</option>
-            <option value="bubble">bubble sort</option>
-            <option value="insert">insert sort</option>
-            <option value="quick">quicksort</option>
-            <option value="merge">merge sort</option>
+            <option value="selection">Selection sort</option>
+            <option value="bubble">Bubble sort</option>
+            <option value="insert">Insert sort</option>
+            <option value="quick">Quicksort</option>
+            <option value="merge">Merge sort</option>
           </select>
         </div>
         <button
           id="sort"
-          class="rounded text-center p-5 bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold w-full focus:outline-none my-1"
+          class="rounded text-center px-5 py-3 bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold w-full focus:outline-none my-1"
         >
-          sort!
+          Sort!
         </button>
         <button
-          class="rounded p-5 bg-red-500 my-1 hover:bg-red-700 text-gray-100 font-bold block w-full focus:outline-none"
+          class="rounded px-5 py-3 bg-red-500 my-1 hover:bg-red-700 text-gray-100 font-bold block w-full focus:outline-none"
           id="random-data"
         >
           Random data
         </button>
-        <div class="w-full block align-middle my-5 block text-left w-full">
+        <div class="w-full block align-middle my-2 block text-left w-full">
           <input
             id="displayAnims"
             type="checkbox"
@@ -87,7 +90,7 @@
             for="wantsAnim"
             class="text-gray-100 inline-block text-lg w-5/6 align-middle"
           >
-            display color animations (will reduce performance)
+            Display color animations (will reduce performance)
           </label>
         </div>
       </div>
@@ -96,7 +99,7 @@
       class="w-screen flex justify-center items-end relative"
       id="bars"
     ></div>
-    <div class="p-5 text-center w-screen flex justify-center mt-10">
+    <div class="py-5 px-1 text-center w-screen flex justify-center mt-7">
       <div class="w-1/3 md:w-2/7 lg:w-1/4 xl:w-1/5 align-bottom">
         <span
           id="animTimeLabel"

@@ -35,6 +35,7 @@ async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// Creates the color index at the bottom of screen
 function createLeyed() {
   let listColors = [DEFAULT, SORTED, PIVOT, UNSELECTED, SWAPPING];
   let colorNames = ["Default", "Sorted", "Pivot", "Unselected", "Swapping"];
@@ -45,10 +46,12 @@ function createLeyed() {
     $leyendItem.append(
       "<div style='background: " +
         listColors[i][0] +
-        "' class='w-6 h-6 mr-2 inline-block align-middle'></div>"
+        "' class='w-3 h-3 md:w-6 md:h-6 mr-2 inline-block align-middle'></div>"
     );
     $leyendItem.append(
-      "<span class='text-white align-middle'>" + colorNames[i] + "</span>"
+      "<span class='text-white align-middle text-sm md:text-lg'>" +
+        colorNames[i] +
+        "</span>"
     );
     $("#leyend").append($leyendItem);
   }
@@ -102,11 +105,9 @@ function uniqueList(x, y) {
 }
 
 function createArray() {
-  // Bars take 1/2 of the screen height where the tallest bar is 1/2 of screen
-  barHeightMult =
-    window.innerWidth >= 640
-      ? window.innerHeight / (2 * numBars)
-      : window.innerHeight / (2.5 * numBars);
+  // Bars take up 40% of screen height
+  barHeightMult = window.innerHeight / (2.5 * numBars);
+
   let unique = uniqueList(1, numBars + 1);
   arr = [];
   console.log(barHeightMult * numBars);
@@ -134,6 +135,8 @@ function createArray() {
   setColor(DEFAULT, 0, arr.length, true);
 }
 
+// Takes care of pausing the animations and waiting
+// untill the algorithms return
 async function resetBars() {
   if (animationRunning) {
     countIncrease(true);
@@ -141,7 +144,7 @@ async function resetBars() {
     userPaused = true;
     animationRunning = false;
 
-    await sleep(300);
+    await sleep(500);
 
     setColor(DEFAULT, 0, numBars);
     userPaused = false;

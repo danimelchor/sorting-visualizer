@@ -42,8 +42,8 @@ body {
 }
 
 #stats div {
-  border: 1px solid white;
-  padding: 1.8rem;
+  border: 1px solid #ccc;
+  padding: 1.3rem;
   color: white;
   text-align: center;
 }

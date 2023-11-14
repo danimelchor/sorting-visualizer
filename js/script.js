@@ -41,19 +41,19 @@ function createLeyed() {
   let colorNames = ["Default", "Sorted", "Pivot", "Unselected", "Swapping"];
 
   for (let i = 0; i < listColors.length; i++) {
-    var $leyendItem = $("<div>");
-    $leyendItem.attr("class", "inline-block m-3 md:my-0");
-    $leyendItem.append(
+    var $legendItem = $("<div>");
+    $legendItem.attr("class", "inline-block m-3 md:my-0");
+    $legendItem.append(
       "<div style='background: " +
-        listColors[i][0] +
-        "' class='w-3 h-3 md:w-6 md:h-6 mr-2 inline-block align-middle'></div>"
+      listColors[i][0] +
+      "' class='w-3 h-3 md:w-6 md:h-6 mr-2 inline-block align-middle'></div>",
     );
-    $leyendItem.append(
+    $legendItem.append(
       "<span class='text-white align-middle text-sm md:text-lg'>" +
-        colorNames[i] +
-        "</span>"
+      colorNames[i] +
+      "</span>",
     );
-    $("#leyend").append($leyendItem);
+    $("#legend").append($legendItem);
   }
 }
 
@@ -151,7 +151,7 @@ async function resetBars() {
   }
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
   window_width_offset = window.innerWidth * WIDTH;
   createLeyed();
 
@@ -171,18 +171,18 @@ $(document).ready(function () {
   // Initial array creation
   createArray();
 
-  $("#displayAnims").click(function () {
+  $("#displayAnims").click(function() {
     localStorage.setItem("displayAnims", !displayAnims);
     displayAnims = !displayAnims;
     setColor(DEFAULT, 0, numBars, true);
   });
 
-  $("#random-data").click(async function () {
+  $("#random-data").click(async function() {
     await resetBars();
     createArray();
   });
 
-  $("#animTimeInput").on("input", function () {
+  $("#animTimeInput").on("input", function() {
     animTime = parseInt($(this).val());
 
     // Squaring the slider value provides more control with smaller values
@@ -192,7 +192,7 @@ $(document).ready(function () {
     localStorage.setItem("animTime", animTime);
   });
 
-  $("#numBarsInput").on("input", async function () {
+  $("#numBarsInput").on("input", async function() {
     numBars = parseInt($(this).val());
     await resetBars();
     adjustInputVisuals();
@@ -200,12 +200,12 @@ $(document).ready(function () {
     localStorage.setItem("numBars", $(this).val());
     $("#barWidthInput").attr(
       "max",
-      Math.floor(window_width_offset / (numBars * 1.2)) // Update the max value the slider can have
+      Math.floor(window_width_offset / (numBars * 1.2)), // Update the max value the slider can have
     );
     createArray();
   });
 
-  $("#barWidthInput").on("input", async function () {
+  $("#barWidthInput").on("input", async function() {
     barWidth = parseInt($(this).val());
     await resetBars();
     adjustInputVisuals();
@@ -213,12 +213,18 @@ $(document).ready(function () {
     localStorage.setItem("barWidth", $(this).val());
     $("#numBarsInput").attr(
       "max",
-      Math.floor(window_width_offset / (barWidth * 1.2)) // Update the max value the slider can have
+      Math.floor(window_width_offset / (barWidth * 1.2)), // Update the max value the slider can have
     );
     createArray();
   });
 
-  $("#sort").click(async function () {
+  // On algo-select option change
+  $("#algo-select").change(function() {
+    selectedAlgo = $("#algo-select option:selected").val();
+    updateStats();
+  });
+
+  $("#sort").click(async function() {
     selectedAlgo = $("#algo-select option:selected").val();
     countIncrease(true);
 
@@ -240,9 +246,6 @@ $(document).ready(function () {
     } else {
       $(this).text("Pause");
       $(this).addClass("pause");
-
-      // Displaying the algo stats
-      updateStats();
 
       animationRunning = true;
 
@@ -267,7 +270,7 @@ $(document).ready(function () {
   });
 });
 
-$(window).on("resize", function () {
+$(window).on("resize", function() {
   window_width_offset = window.innerWidth * WIDTH;
   numBars = Math.floor(window_width_offset / (barWidth * 1.2));
   adjustInputVisuals();
